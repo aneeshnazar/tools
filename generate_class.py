@@ -15,6 +15,7 @@ class %s {
         %s (%s const &cc);
         ~%s ();
         %s &operator=(%s const &input);
+
 """ % (name, name, name, name, name, name)
 
     for i in range(len(var_names)):
@@ -45,6 +46,7 @@ def gen_imp(name, var_names, var_types):
 
     eq = """\treturn (*this);
 }
+
 """
 
     for i in range(len(var_names)):
@@ -72,11 +74,10 @@ def main():
 
     headerfile = gen_header(h_name, name, var_names, var_types)
 
-    with open("./" + name + ".Class.hpp", 'w+') as header:
+    with open(sys.argv[1] + name + ".Class.hpp", 'w+') as header:
         header.write(headerfile)
-    with open("./" + name + ".Class.cpp", 'w+') as imp:
+    with open(sys.argv[1] + name + ".Class.cpp", 'w+') as imp:
         imp.write(impfile)
-    #for i in range(len(var_names)):
 
 if __name__ == '__main__':
     main()
