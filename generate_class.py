@@ -20,7 +20,7 @@ class %s {
 
     for i in range(len(var_names)):
         header += "\t\t" + var_types[i] + " " + var_names[i].strip() + ";\n"
-        body += "\t\t" + var_types[i] + " get" + var_names[i].strip().title() + "(void);\n"
+        body += "\t\t" + var_types[i] + " get" + var_names[i].strip().title() + "(void) const;\n"
         body += "\t\t" + "void set" + var_names[i].strip().title() + "(" + var_types[i] + " _" + var_names[i].strip() + ");\n"
 
     footer = """};
@@ -33,7 +33,7 @@ def gen_imp(name, var_names, var_types):
 
 %s::%s(){}
 
-%s::%s(%s const cc)
+%s::%s(%s const &cc)
 {
     *this = cc;
 }
@@ -51,7 +51,7 @@ def gen_imp(name, var_names, var_types):
 
     for i in range(len(var_names)):
         body += "\t" + var_names[i].strip() + " = input." + var_names[i].strip() + ";\n"
-        eq += var_types[i] + " " + name + "::get" + var_names[i].strip().title() + "(void){ return " + var_names[i].strip() + ";}\n\n"
+        eq += var_types[i] + " " + name + "::get" + var_names[i].strip().title() + "(void) const { return " + var_names[i].strip() + ";}\n\n"
         eq += "void " + name + "::set" + var_names[i].strip().title() + "(" + var_types[i] + " _" + var_names[i].strip() + "){" + var_names[i].strip() + " = _" + var_names[i].strip() + ";}\n\n"
 
     return body + eq
@@ -59,11 +59,9 @@ def gen_imp(name, var_names, var_types):
 def main():
     var_types = []
     var_names = []
-    print("Enter Class name:")
     name = input()
     h_name = name.upper()
     while True :
-        print("Enter Variable type and name:")
         input_ = sys.stdin.readline()
         if input_ == '':
             break
