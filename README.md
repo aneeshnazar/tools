@@ -16,3 +16,7 @@ I use this script to generate a makefile. The script takes in four-plus command-
 
 I used this script to generate a list of random names. I do this by sending a GET request to an online random name generator,
 then scraping the HTML output for the generated name.
+
+## view_xpm.py
+
+Pretty much exactly what it sounds like - a script to decode and view XPM images. I was frustrated by the lack of support for the format, so I wrote this script to decode and view the files.
