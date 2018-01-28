@@ -57,6 +57,9 @@ def gen_imp(name, var_names, var_types):
     return body + eq
 
 def main():
+    if (len(sys.argv) != 2):
+        print ("Usage: ./generate_class.py [output directory]")
+        exit(0);
     var_types = []
     var_names = []
     name = input()
