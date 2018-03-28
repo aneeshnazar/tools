@@ -3,8 +3,8 @@
 def fibonacci(arg):
     a = [0, 1, 1];
     i = 2;
-    if (arg <= 0):
-        return (0);
+    if (arg <= i):
+        return (a[arg]);
     while (i < arg):
         a[0] = a[1]
         a[1] = a[2]
